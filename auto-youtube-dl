@@ -5,8 +5,6 @@ RED='\033[0;31m'
 NC='\033[0m' # No color.
 # Example; printf "I ${RED}love${NC} you!"
 
-#cat << EOF
-
 echo What would you like to do?
 echo
 echo    "1.) Download a video"
@@ -17,7 +15,6 @@ echo    "5.) Download playlist (ignore errors)"
 echo
 echo Press ctrl+c to exit.
 echo
-#EOF
 
 # "-n1" specifies 1 character input.
 # "-p" option makes it read as a prompt, meaning it doesn't add a trailing newline before trying to read input.
@@ -28,14 +25,26 @@ echo
 case $varUserInput in
     1*)
         read -p "Please paste your Youtube URL: " url0
+        echo
+        echo "Saving content to $PWD"
+        echo
+        sleep 3
         youtube-dl " $url0"
         ;;
     2*)
         read -p "Please paste your Youtube URL: " url0
+        echo
+        echo "Saving content to $PWD"
+        echo
+        sleep 3
         youtube-dl --extract-audio --audio-format mp3 " $url0"
         ;;
     3*)
         read -p "Please paste your Youtube playlist URL: " url0
+        echo
+        echo "Saving content to $PWD"
+        echo
+        sleep 3
         youtube-dl --extract-audio --audio-format mp3 -i -o "%(playlist_index)s-%(title)s.%(ext)s" " $url0"
         ;;
     4*)
@@ -43,6 +52,10 @@ case $varUserInput in
         ;;
     5*)
         read -p "Please paste your Youtube playlist URL: " url0
+        echo
+        echo "Saving content to $PWD"
+        echo
+        sleep 3
         youtube-dl -i -o "%(playlist_index)s-%(title)s.%(ext)s" " $url0"
         ;;
 esac
